@@ -1,13 +1,14 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import numpy as np
+import os
 from spam_detector import *
 
 app = Flask(__name__)
 CORS(app)
 
 # =====================================================
-# LOAD MODEL ONLY ONCE (CRITICAL FIX)
+# LOAD MODEL ONLY ONCE
 # =====================================================
 
 print("Loading spam detection model...")
@@ -50,10 +51,11 @@ def load_model():
     MODEL_READY = True
     print("Model loaded successfully!")
 
+# Load once at startup
 load_model()
 
 # =====================================================
-# PREDICTION
+# PREDICTION LOGIC
 # =====================================================
 
 def predict_email(text):
@@ -103,8 +105,14 @@ def predict_api():
     })
 
 # =====================================================
-# RUN SERVER (RELOADER OFF — CRITICAL)
+# RUN SERVER (RENDER / PRODUCTION SAFE)
 # =====================================================
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=False, use_reloader=False)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False,
+        use_reloader=False
+    )
