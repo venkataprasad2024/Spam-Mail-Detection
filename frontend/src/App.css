@@ -1,0 +1,196 @@
+/* Reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode by default */
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Light mode */
+.app.light {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: #1a1a1a;
+}
+
+/* Container with glassmorphism */
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 50px 60px; /* More horizontal padding */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  width: 90%; /* Changed from 100% with max 800px */
+  max-width: 1200px; /* Increased from 800px for wider screens */
+  margin: 0 auto; /* Center it */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Light mode container */
+.app.light .container {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00d4ff, #ff007a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mode-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.app.light .mode-toggle {
+  background: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.mode-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Subtitle */
+.subtitle {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.app.light .subtitle {
+  color: #666;
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  resize: vertical;
+  transition: all 0.3s;
+}
+
+.app.light textarea {
+  background: white;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #00d4ff;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.2);
+}
+
+/* Button */
+.check-btn {
+  background: linear-gradient(90deg, #00d4ff, #ff007a);
+  color: white;
+  border: none;
+  padding: 16px 48px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s;
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+.check-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+}
+
+.check-btn:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+/* Result */
+.result {
+  margin-top: 40px;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.result.spam {
+  background: rgba(255, 68, 68, 0.15);
+  border: 2px solid #ff4444;
+}
+
+.result.safe {
+  background: rgba(68, 255, 68, 0.15);
+  border: 2px solid #44ff44;
+}
+
+.result-icon {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+}
+
+.result h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.confidence {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 30px 20px;
+  }
+  h1 { font-size: 2rem; }
+}

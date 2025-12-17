@@ -1,0 +1,20 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node modules
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Large model file (optional - it's big)
+backend/model.txt
+
+# Mac files
+.DS_Store
+
+# Logs
+*.log
