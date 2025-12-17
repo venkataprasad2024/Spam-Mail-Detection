@@ -18,3 +18,17 @@ backend/model.txt
 
 # Logs
 *.log
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# ML output files
+backend/Output Files/
+backend/model.txt
+backend/result.txt
+backend/evaluation.txt
+
