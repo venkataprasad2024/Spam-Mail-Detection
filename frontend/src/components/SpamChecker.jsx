@@ -1,6 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 
+/**
+ * IMPORTANT:
+ * Backend deployed on Render
+ * https://spam-mail-detection-7w08.onrender.com
+ */
+const API_URL = "https://spam-mail-detection-7w08.onrender.com";
+
 export default function SpamChecker() {
   const [email, setEmail] = useState("");
   const [result, setResult] = useState(null);
@@ -13,18 +20,25 @@ export default function SpamChecker() {
   };
 
   const checkSpam = async () => {
-    if (!email.trim()) return alert("Paste an email first");
+    if (!email.trim()) {
+      alert("Paste an email first");
+      return;
+    }
 
     setLoading(true);
     setResult(null);
 
     try {
-      const res = await axios.post("/api/predict", { email });
+      const res = await axios.post(`${API_URL}/predict`, {
+        email,
+      });
       setResult(res.data);
     } catch (err) {
+      console.error(err);
       alert("Backend connection error");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -53,7 +67,7 @@ export default function SpamChecker() {
         </button>
       </header>
 
-      {/* ===== Main Card ===== */}
+      {/* ===== Main ===== */}
       <main className="flex items-center justify-center px-6 py-10">
         <div
           className={`w-full max-w-5xl rounded-3xl p-10 grid md:grid-cols-2 gap-10 shadow-2xl backdrop-blur-xl ${
@@ -67,7 +81,7 @@ export default function SpamChecker() {
             <h2 className="text-3xl font-extrabold mb-2">
               Check your email
             </h2>
-            <p className="text-gray-400 dark:text-gray-400 mb-6">
+            <p className="text-gray-400 mb-6">
               Paste an email and our AI will instantly detect spam.
             </p>
 
@@ -98,9 +112,9 @@ export default function SpamChecker() {
               <div
                 className={`w-full max-w-sm rounded-3xl p-8 text-center shadow-xl ${
                   result.is_spam
-                    ? "bg-gradient-to-br from-red-500/80 to-pink-600/80 text-white"
-                    : "bg-gradient-to-br from-emerald-500/80 to-teal-600/80 text-white"
-                }`}
+                    ? "bg-gradient-to-br from-red-500/80 to-pink-600/80"
+                    : "bg-gradient-to-br from-emerald-500/80 to-teal-600/80"
+                } text-white`}
               >
                 <div className="text-7xl mb-4">
                   {result.is_spam ? "🚨" : "✅"}
@@ -108,9 +122,7 @@ export default function SpamChecker() {
                 <h3 className="text-3xl font-bold mb-2">
                   {result.is_spam ? "Spam Detected" : "Safe Email"}
                 </h3>
-                <p className="text-xl opacity-90">
-                  Confidence
-                </p>
+                <p className="text-xl opacity-90">Confidence</p>
                 <p className="text-4xl font-extrabold mt-1">
                   {result.confidence}
                 </p>
@@ -123,9 +135,7 @@ export default function SpamChecker() {
                     : "bg-white border border-gray-300 text-gray-500"
                 }`}
               >
-                <p className="text-xl">
-                  Result will appear here
-                </p>
+                <p className="text-xl">Result will appear here</p>
               </div>
             )}
           </div>
