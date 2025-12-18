@@ -62,6 +62,7 @@ The model is trained once at server startup and reused for all incoming predicti
 
 ## 📁 Project Structure
 
+```text
 Spam-Mail-Detection/
 │
 ├── backend/
