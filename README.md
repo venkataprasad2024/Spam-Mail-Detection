@@ -62,3 +62,73 @@ The model is trained once at server startup and reused for all incoming predicti
 
 ## 📁 Project Structure
 
+Spam-Mail-Detection/
+│
+├── backend/
+│   ├── app.py                # Flask API entry point
+│   ├── spam_detector.py      # Core Naive Bayes logic
+│   ├── train.py              # Model training script
+│   ├── test.py               # Model evaluation script
+│   ├── requirements.txt      # Backend dependencies
+│   ├── train/                # Training email dataset
+│   └── test/                 # Testing email dataset
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── SpamChecker.jsx   # Main UI component
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   └── tailwind.config.js
+│
+├── gif/
+│   └── spam detector.gif     # Demo animation
+│
+├── image/
+│   ├── Email Logo.png
+│   ├── 1.png
+│   ├── 2.png
+│   └── 3.png
+│
+└── README.md
+
+## 🖥️ Local Setup Instructions
+
+### Backend
+cd backend
+pip install -r requirements.txt
+python app.py
+
+### Frontend
+cd frontend
+npm install
+npm run dev
+
+## 🌍 Deployment
+
+Frontend  → Vercel  
+Backend   → Render  
+Communication via HTTPS REST APIs
+
+## 🎯 Future Enhancements
+
+- Advanced NLP preprocessing
+- Improved model accuracy
+- Email file upload support
+- User authentication
+- Prediction history tracking
+- Analytics dashboard
+
+## 👨‍💻 Author
+
+Venkata Prasad  
+Full Stack Developer | Machine Learning Enthusiast  
+
+GitHub: https://github.com/venkataprasad2024  
+Live Demo: https://spam-mail-detection-tau.vercel.app/
+
+⭐ If you like this project, don’t forget to star the repository!
